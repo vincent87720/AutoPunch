@@ -23,11 +23,8 @@
 |    |--簽到.xml　     #工作排程器簽到設定檔
 |    |--簽退.xml　     #工作排程器簽退設定檔
 ```
-## 下載
+## 資料夾設定
 
-### 整包下載
-點選畫面右上角的`code`>`Download ZIP`即可下載所有檔案
-![0](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/0.png?raw=true)
 下載完成後解壓縮檔案到想要存放的目錄(這裡以直接放在C:\目錄下為例)
 ![1](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/1.png?raw=true)
 
