@@ -28,6 +28,9 @@
 下載完成後解壓縮檔案到想要存放的目錄(這裡以直接放在C:\目錄下為例)
 ![1](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/1.png?raw=true)
 
+更改資料夾名稱為AutoPunch加上學號，例如:AutoPunch-F0708090
+![14](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/14.png?raw=true)
+
 ## 設定
 
 ### 設定帳號密碼
@@ -56,9 +59,26 @@
 
 ![4](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/4.png?raw=true)
 
+### 調整使用者設定
+要建立工作之前，必須先將使用者調整成本機帳戶才可以順利匯入工作
+
+點選一般>安全性選項>變更使用者或群組
+![10](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/10.png?raw=true)
+
+點選進階
+![11](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/11.png?raw=true)
+
+點選立即尋找後，在下方列表選取目前的使用者帳戶，按下確定鍵
+![12](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/12.png?raw=true)
+
+![13](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/13.png?raw=true)
+
 ### 調整觸發排程
 點選**觸發程序**頁籤可以看到所有會觸發該工作的時間點，可點選新增或編輯現有的項目
 ![5](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/5.png?raw=true)
+
+預設設定延遲工作最高可達5分鐘，即表示隨機在設定的時間開始往後五分鐘內執行，若要在確切時間執行請取消勾選此選項
+![15](https://github.com/vincent87720/AutoPunch/blob/master/assets/img/15.png?raw=true)
 
 ### 設定執行檔位置
 #### 尋找開始位置
