@@ -2,20 +2,21 @@ package punch
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
+	"regexp"
 	"strconv"
 	"strings"
-	"regexp"
 	time "time"
 )
 
-func Punch(username string, password string, punchType string) {
+func Punch(username string, password string, punchType string) string {
 	startDate, endDate := getDateRange()
-	
+
 	//登入請求的目標URL
-	loginURL := "http://ais.dyu.edu.tw/prj_epfee/login_lib.php" 
+	loginURL := "http://ais.dyu.edu.tw/prj_epfee/login_lib.php"
 	//簽到簽退的目標URL
 	punchURL := "http://ais.dyu.edu.tw/prj_epfee/prj_carddata_list.php?func_id=frm_ins&txt_bdate=" + startDate + "&txt_edate=" + endDate + "&txt_stno=" + username + "&hdn_itype=" + punchType
 	//登入時的驗證表單資訊
@@ -49,12 +50,12 @@ func Punch(username string, password string, punchType string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Status: "+response.Status)
-	// respBody, err := ioutil.ReadAll(response.Body)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// checkPunchStatus(respBody)
+	fmt.Println("Status: " + response.Status)
+	respBody, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return checkPunchStatus(respBody)
 }
 
 func getDateRange() (startDate string, endDate string) {
@@ -92,7 +93,7 @@ func judgeLeapYear(year int) (leapYear bool) {
 	return leapYear
 }
 
-func checkPunchStatus(body []byte){
+func checkPunchStatus(body []byte) string {
 	regexpPunchOutSuccess, err := regexp.Compile(`alert\('簽退成功'\)`)
 	if err != nil {
 		log.Fatal(err)
@@ -101,11 +102,12 @@ func checkPunchStatus(body []byte){
 	if err != nil {
 		log.Fatal(err)
 	}
-	if regexpPunchOutSuccess.Match(body) {
-		fmt.Println("Punch: 簽退成功")
-	} else if regexpPunchInSuccess.Match(body) {
-		fmt.Println("Punch: 簽到成功")
+
+	if regexpPunchInSuccess.Match(body) {
+		return "簽到成功"
+	} else if regexpPunchOutSuccess.Match(body) {
+		return "簽退成功"
 	} else {
-		fmt.Println("Punch: 簽到/簽退失敗")
+		return "簽到/簽退失敗"
 	}
 }
