@@ -93,19 +93,19 @@ func judgeLeapYear(year int) (leapYear bool) {
 }
 
 func checkPunchStatus(body []byte){
-	reg,err := regexp.Compile(`alert\('簽退成功'\)`)
+	regexpPunchOutSuccess, err := regexp.Compile(`alert\('簽退成功'\)`)
 	if err != nil {
 		log.Fatal(err)
 	}
-	regexpPnhInSuccess,err := regexp.Compile(`&hdn_itype=A`)
+	regexpPunchInSuccess, err := regexp.Compile(`alert\('簽到成功'\)`)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if reg.Match(body){
+	if regexpPunchOutSuccess.Match(body) {
 		fmt.Println("Punch: 簽退成功")
-	}else if regexpPnhInSuccess.Match(body){
+	} else if regexpPunchInSuccess.Match(body) {
 		fmt.Println("Punch: 簽到成功")
-	}else{
+	} else {
 		fmt.Println("Punch: 簽到/簽退失敗")
 	}
 }
